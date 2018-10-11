@@ -1,8 +1,8 @@
 # Tested on Deeptest release 1.7.0
 cbmcArguments:
-  classpath: '/tools/cbmc/models-simple-overlay.jar:/tools/cbmc/models.jar:.'
   depth: false
   slice-function-calls: org\.slf4j\.Logger.*
+  java-external-code-action: 'mock'
 phases:
 -
   timeout: 300
@@ -18,7 +18,7 @@ phases:
     unwind: 2
     java-assume-inputs-non-null: true
 -
-  timeout: 300
+  timeout: 900
   cbmcArguments:
     max-nondet-array-length: 30
     max-nondet-string-length: 10
