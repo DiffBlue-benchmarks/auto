@@ -20,9 +20,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.google.auto.value</groupId>
-    <artifactId>auto-value-parent</artifactId>
+    <groupId>com.google.auto</groupId>
+    <artifactId>auto-parent</artifactId>
     <version>HEAD-SNAPSHOT</version>
+    <relativePath>../../../../parent/pom.xml</relativePath>
   </parent>
 
   <groupId>com.google.auto.value.it.gwtserializer</groupId>
@@ -62,21 +63,6 @@
       <artifactId>gwt-dev</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava-gwt</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 
   <build>
@@ -106,13 +92,6 @@
           <compilerArgument>-Xlint:all</compilerArgument>
           <showWarnings>true</showWarnings>
           <showDeprecation>true</showDeprecation>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <skipTests>true</skipTests>
         </configuration>
       </plugin>
       <plugin>
