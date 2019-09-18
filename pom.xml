@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>com.google.auto</groupId>
   <artifactId>auto</artifactId>
   <version>HEAD-SNAPSHOT</version>
   <name>Google Auto (Wrapper)</name>
   <packaging>pom</packaging>
-
   <modules>
     <module>common</module>
     <module>factory</module>
     <module>service</module>
     <module>value</module>
   </modules>
-
   <dependencies>
     <dependency>
       <groupId>com.google.auto</groupId>
@@ -58,7 +54,6 @@
       <version>HEAD-SNAPSHOT</version>
     </dependency> -->
   </dependencies>
-
   <reporting>
     <plugins>
       <plugin>
@@ -66,7 +61,7 @@
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <version>2.9</version>
         <reportSets>
-          <reportSet></reportSet>
+          <reportSet/>
         </reportSets>
       </plugin>
       <plugin>
@@ -100,4 +95,24 @@
       </plugin>
     </plugins>
   </reporting>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.2.1</version>
+        <configuration>
+          <outputFile>target/${project.artifactId}-${project.version}-with-dependencies.jar</outputFile>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>

@@ -15,17 +15,14 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <parent>
     <groupId>com.google.auto</groupId>
     <artifactId>auto-parent</artifactId>
     <version>HEAD-SNAPSHOT</version>
     <relativePath>../parent/pom.xml</relativePath>
   </parent>
-
   <groupId>com.google.auto.factory</groupId>
   <artifactId>auto-factory</artifactId>
   <version>HEAD-SNAPSHOT</version>
@@ -33,14 +30,12 @@
   <description>
     JSR-330-compatible factories.
   </description>
-
   <scm>
     <url>http://github.com/google/auto</url>
     <connection>scm:git:git://github.com/google/auto.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/google/auto.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
-
   <dependencies>
     <dependency>
       <groupId>com.google.auto</groupId>
@@ -65,4 +60,24 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.2.1</version>
+        <configuration>
+          <outputFile>target/${project.artifactId}-${project.version}-with-dependencies.jar</outputFile>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>
