@@ -19,9 +19,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.google.auto.value</groupId>
-    <artifactId>auto-value-parent</artifactId>
+    <groupId>com.google.auto</groupId>
+    <artifactId>auto-parent</artifactId>
     <version>HEAD-SNAPSHOT</version>
+    <relativePath>../../parent/pom.xml</relativePath>
   </parent>
 
   <groupId>com.google.auto.value</groupId>
