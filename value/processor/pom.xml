@@ -50,7 +50,6 @@
       <groupId>com.google.auto.service</groupId>
       <artifactId>auto-service</artifactId>
       <version>1.0-rc4</version>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.google.escapevelocity</groupId>
@@ -66,7 +65,6 @@
       <groupId>net.ltgt.gradle.incap</groupId>
       <artifactId>incap-processor</artifactId>
       <version>0.2</version>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
@@ -140,47 +138,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-invoker-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.immutables.tools</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-            <configuration>
-              <minimizeJar>true</minimizeJar>
-              <artifactSet>
-                <excludes>
-                  <exclude>com.google.code.findbugs:jsr305</exclude>
-                </excludes>
-              </artifactSet>
-              <relocations>
-                <relocation>
-                  <pattern>org.objectweb</pattern>
-                  <shadedPattern>autovalue.shaded.org.objectweb$</shadedPattern>
-                </relocation>
-                <relocation>
-                  <pattern>com.google</pattern>
-                  <shadedPattern>autovalue.shaded.com.google$</shadedPattern>
-                  <excludes>
-                    <exclude>com.google.auto.value.**</exclude>
-                  </excludes>
-                </relocation>
-                <relocation>
-                  <pattern>com.squareup.javapoet</pattern>
-                  <shadedPattern>autovalue.shaded.com.squareup.javapoet$</shadedPattern>
-                </relocation>
-                <relocation>
-                  <pattern>net.ltgt.gradle.incap</pattern>
-                  <shadedPattern>autovalue.shaded.net.ltgt.gradle.incap$</shadedPattern>
-                </relocation>
-              </relocations>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>
