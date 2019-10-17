@@ -21,17 +21,17 @@
   <parent>
     <groupId>com.google.auto</groupId>
     <artifactId>auto-parent</artifactId>
-    <version>7</version>
+    <version>HEAD-SNAPSHOT</version>
+    <relativePath>../parent/pom.xml</relativePath>
   </parent>
 
   <groupId>com.google.auto.value</groupId>
-  <artifactId>auto-value-parent</artifactId>
+  <artifactId>auto-value</artifactId>
   <version>HEAD-SNAPSHOT</version>
-  <name>AutoValue Parent</name>
+  <name>AutoValue</name>
   <description>
     Immutable value-type code generation for Java 1.6+.
   </description>
-  <packaging>pom</packaging>
 
   <scm>
     <url>http://github.com/google/auto</url>
@@ -40,10 +40,73 @@
     <tag>HEAD</tag>
   </scm>
 
-  <modules>
-    <module>annotations</module>
-    <module>processor</module>
-    <module>src/it/functional</module>
-    <module>src/it/gwtserializer</module>
-  </modules>
+  <dependencies>
+    <dependency>
+      <groupId>com.google.auto</groupId>
+      <artifactId>auto-common</artifactId>
+      <version>0.10</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.auto.service</groupId>
+      <artifactId>auto-service</artifactId>
+      <version>1.0-rc4</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.escapevelocity</groupId>
+      <artifactId>escapevelocity</artifactId>
+      <version>0.9</version>
+    </dependency>
+    <dependency>
+      <groupId>net.ltgt.gradle.incap</groupId>
+      <artifactId>incap</artifactId>
+      <version>0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>net.ltgt.gradle.incap</groupId>
+      <artifactId>incap-processor</artifactId>
+      <version>0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.velocity</groupId>
+      <artifactId>velocity</artifactId>
+      <version>1.7</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.vm</include>
+        </includes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <includes>
+            <include>com/google/auto/value/*</include>
+            <include>com/google/auto/value/extension/memoized/*</include>
+            <include>com/google/auto/value/processor/**/*.java</include>
+            <include>com/google/auto/value/extension/memoized/processor/**/*.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <profiles>
+    <profile>
+      <id>disable-java8-doclint</id>
+      <activation>
+        <jdk>[1.8,)</jdk>
+      </activation>
+      <properties>
+        <additionalparam>-Xdoclint:none</additionalparam>
+      </properties>
+    </profile>
+  </profiles>
 </project>
